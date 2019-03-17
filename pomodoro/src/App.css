@@ -12,7 +12,7 @@
   width:100%;
   background-color: #222;
   height: 150px;
-  padding: 20px;
+  padding: 200px;
   color: white;
 }
 #session-label, #break-label{
@@ -21,6 +21,7 @@
 #timer-label{
   width:100%;
   justify-content: center;
+
 }
 #start_stop, #reset{
   margin: 5px;
