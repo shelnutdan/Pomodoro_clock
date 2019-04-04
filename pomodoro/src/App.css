@@ -1,40 +1,61 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700,900);
+
 .App {
   text-align: center;
+vertical-align: center;
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
-
+  font-family: "Roboto", sans-serif;
+  width:100%;
+  font-size: 20px;
 }
-
-
 
 .App-header {
-  width:100%;
-  background-color: #222;
-  height: 150px;
-  padding: 200px;
+  display:flex;
+  flex-direction: column;
+  width:40%;
+  justify-content: center;
+  background-color: #92e5a7;
+  font-size: 1.5rem;
+  height: 300px;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 30px;
   color: white;
 }
-#session-label, #break-label{
+.timer-container{
   width:50%;
+  padding: 20px;
+  text-align: center;
+}
+
+#session-label, #break-label{
+
+  margin-top: 50px;
 }
 #timer-label{
-  width:100%;
-  justify-content: center;
-
+  margin-left: 50px;
 }
 #start_stop, #reset{
-  margin: 5px;
+
+  margin-top: 15px;
+  margin-left: 5px;
 
 }
 #break-decrement, #session-decrement {
   margin-right: 25px;
+
 }
 
 #break-increment, #session-increment {
   margin-left: 25px;
-}
 
+
+}
+#description{
+  margin-left: 20px;
+}
 .App-title {
   font-size: 1.5em;
 }
