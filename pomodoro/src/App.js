@@ -12,11 +12,11 @@ class App extends Component {
     super(props);
     /*Initial states*/
     this.state= {
-      countdown:30,
-      breakCountdown:30,
-      breakSession:30,
-      session: 30,
-      break:30,
+      countdown:1500,
+      breakCountdown:300,
+      breakSession:300,
+      session: 1500,
+      break:300,
       active: 0
 
     }
@@ -48,8 +48,8 @@ class App extends Component {
     }
   }
   decrementSession = () =>{
-    if(this.state.session <=0){
-    this.setState({session:0})
+    if(this.state.session <=60){
+    this.setState({session:60})
   } else{
     this.setState({ session: this.state.session-60})
     this.setState({ countdown:this.state.countdown-60})
@@ -58,8 +58,8 @@ class App extends Component {
   }
   /*Increment and decrement the length of a break length*/
   incrementBreak = () =>{
-    if (this.state.break >=3600){
-      this.setState({break:3600})
+    if (this.state.breakSession >=3600){
+      this.setState({breakSession:3600})
       this.setState({breakCountdown:3600})
     } else{
       this.setState({ breakSession: this.state.breakSession+60})
@@ -67,11 +67,11 @@ class App extends Component {
     }
   }
   decrementBreak= () =>{
-    if(this.state.break <=0){
-      this.setState({breakSession:0})
-      this.setState({breakCountdown:0})
+    if(this.state.breakSession <=60){
+      this.setState({breakSession:60})
+      this.setState({breakCountdown:60})
     } else{
-      this.setState({ breakSession: this.state.break-60})
+      this.setState({ breakSession: this.state.breakSession-60})
       this.setState({ breakCountdown: this.state.breakCountdown-60})
     }
   }
@@ -80,10 +80,11 @@ class App extends Component {
     clearInterval(this.timer)
       this.setState({
         active:0,
-        session: 150,
+        countdown:1500,
+        breakCountdown:300,
+        breakSession:300,
+        session: 1500,
         break:300,
-        countdown: 150,
-        breakCountdown:300
       })
   }
  /*Start time when the button is clicked*/
@@ -149,13 +150,13 @@ playAudio =() =>{
     if(this.state.session % 60 >= 0) {
       minutes=Math.floor(this.state.session/60);
       seconds= this.state.session%60;
-      sessionDisplay=(minutes<10? '0'+minutes:minutes)+":"+(seconds<10?'0'+seconds:seconds)
+      sessionDisplay=minutes
 
       }
     if(this.state.breakSession % 60 >= 0) {
       minutes=Math.floor(this.state.breakSession/60);
       seconds= this.state.breakSession%60;
-      breakDisplay=(minutes<10? '0'+minutes:minutes)+":"+(seconds<10?'0'+seconds:seconds)
+      breakDisplay=minutes
 
     }
 
@@ -198,17 +199,18 @@ playAudio =() =>{
         <div className='timer-container'>
         <h1>Adjust your time here</h1>
           <div id="session-label">
-            <p>Session Length</p>
+            <p >Session Length</p>
             <FontAwesomeIcon onClick={this.decrementSession} id='session-decrement' icon={faMinus} />
-            {sessionDisplay}
+            <span id="session-length">{sessionDisplay}</span>
             <FontAwesomeIcon onClick={this.incrementSession} id='session-increment' icon={faPlus} />
 
           </div>
           <div id='break-label'>
 
-          <p>Break length</p>
+          <p>Break Length</p>
           <FontAwesomeIcon onClick={this.decrementBreak} id='break-decrement' icon={faMinus} />
-          {breakDisplay}
+          <span id="break-length">{breakDisplay}</span>
+
           <FontAwesomeIcon onClick={this.incrementBreak} id='break-increment' icon={faPlus} />
 
         </div>
